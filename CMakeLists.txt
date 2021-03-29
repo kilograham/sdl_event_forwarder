@@ -9,6 +9,8 @@ add_executable(sdl_event_forwarder
 	main.cpp
 )
 
+set(SDL2_INCLUDE_DIR /usr/local/include)
+
 target_include_directories(sdl_event_forwarder PRIVATE
 		${SDL2_INCLUDE_DIR}
 )

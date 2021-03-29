@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <termios.h>
+#include <algorithm>
 
 int set_interface_attribs(int fd, int speed) {
     struct termios tty;
