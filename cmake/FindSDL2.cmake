@@ -82,7 +82,18 @@ find_package_handle_standard_args(SDL2
     VERSION_VAR SDL2_VERSION
 )
 
+
 if(SDL2_FOUND)
+
+    # Trim SDL2 from the end of the include path if its there. 
+    # This allows #include "SDL2/sdl.h" in main.cpp to work. 
+    get_filename_component(last_dir "${SDL2_INCLUDE_DIR}" NAME)    
+    if ("${last_dir}" MATCHES "SDL2")
+        get_filename_component(trim_dir "${SDL2_INCLUDE_DIR}" PATH)    
+        set(SDL2_INCLUDE_DIR "${trim_dir}")
+    endif()
+
+
     # SDL2 imported target.
     add_library(SDL2::SDL2 UNKNOWN IMPORTED)
     set_target_properties(SDL2::SDL2 PROPERTIES
